@@ -1,11 +1,11 @@
 # apt-mirror
 
 <b>Reason for Being</b><br>
-I created this image because I was frustrated with the apt-mirror images I found in docker hub,  they were all based on old baseimages.  
+<br>I created this image because I was frustrated with the apt-mirror images I found in docker hub,  they were all based on old baseimages.  
 So I created a new one and will relatively frequently keep it up to date.
 
 <b>High Level Information</b><br>
-This is built using ubuntu:latest, at the time of writing this is the Focal Fosa build (20.04).  there have been rumours of problems with <code>apt-mirror</code> running on Ubuntu 20.04, but i've not had any issues with it during my testing.  
+<br>This is built using ubuntu:latest, at the time of writing this is the Focal Fosa build (20.04).  there have been rumours of problems with <code>apt-mirror</code> running on Ubuntu 20.04, but i've not had any issues with it during my testing.  
 
 The software installed in this image:
 <li>apt-mirror  -  to mirror apt based resposiroties (e.g. Ubuntu / Debian / Kali)</li>
