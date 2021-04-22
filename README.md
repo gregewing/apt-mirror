@@ -65,5 +65,4 @@ It's not all that pretty, but it works and i think its a simple and elegant solu
 
 <code>* * * * * sudo /var/lib/docker/volumes/apt-mirror/_data/limit_bw</code>
 
-<br>
-Enjoy.
+<br>Enjoy  :-)
