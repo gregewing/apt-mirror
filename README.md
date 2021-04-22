@@ -40,7 +40,7 @@ docker run -d -it \<br>
 gregewing/apt-mirror<br>
 </code><br>
 
-<b>Configuring:</b><br>
+<br><b>Configuring:</b><br>
 
 The list of repos that get mirrored is held in <code>/etc/apt/mirror.list</code>. This shoud provide perisitence across recreations of teh container, but does not easily allow altering the list of mirrored repos without having teh container running (which is a handy feature I'll add when i have time) 
 
