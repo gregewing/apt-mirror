@@ -1,0 +1,2 @@
+ip addr | grep mtu | grep -v lo | cut -d' ' -f2 | cut -d'@' -f2- | cut -d'f' -f2- > /var/spool/apt-mirror/adapter.id
+

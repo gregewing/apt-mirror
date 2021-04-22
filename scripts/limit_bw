@@ -1,0 +1,18 @@
+#!/bin/bash
+
+ratelimit=1mbit     #see 'tc' man page for which suffixes to use.
+burstlimit=1mbit    #see 'tc' man page for which suffixes to use.
+
+echo setting rate limit
+
+# get the correct adapter string:
+adapterid=$(/bin/cat /var/lib/docker/volumes/apt-mirror/_data/adapter.id)
+vethid=$(/sbin/ip addr | grep $adapterid | grep veth | grep -v ether | cut -d' ' -f2- | cut -d'@' -f1)
+
+echo -n $adapterid
+echo $vethid
+
+# Set the bandwidth limit
+/sbin/tc qdisc del dev $vethid root
+/sbin/tc qdisc add dev $vethid root tbf rate $ratelimit burst $burstlimit latency 1ms
+
