@@ -54,9 +54,18 @@ Restart the container after making changes to <code>/etc/apt/mirror.list</code>
 
 To apply meaningful bandwidth controls I have created a few scripts.  The anatomy is as follows:<br>
 <li>get_adapter.id  -  this runs right at the beginning of the entrypoint.sh scipt and it writes the network adapter ID that is seen inside the running container to this file : <code>/var/spool/apt-mirror/adapter.id</code></li>
-<li>limit_bw  -  this sits inside the container, just so that it does not have to be created manually outside the container, but it does not get run by the container itself.  When teh docker image is created, the Dockerfile places this script file in the volume that is mounted from the docker host.</li>
-<b>
-The magic happens when you add a cron job on the docker host to run limit_bw at regular intervals.  I set it up as below to run every 60 seconds, therefor if I need to change the badwidth allowance I only haveto wait a maximum of 60 seconds before the change is altomatically applied after I edit the parameters in the limit_bw script file, either my exec-ing into the container or my simply editing it from the docker host directly.  Not all that pretty, but it works and i think its a simple and elegant solution.  Here is the cron job line i have in my crontab:<br>
+<li>limit_bw  -  this sits inside the container, just so that it does not have to be created manually outside the container, but it does not get run by the container itself.  This script file sits in the volume that is mounted from the docker host, where it can be executed by a cron job configured on the host.</li>
+<br>
+The magic happens when you add a cron job on the docker host to run <code>limit_bw</code> at regular intervals.  I set it up as follows to run every 60 seconds, so only have a maximum of that long to wait before any changes to the allocated bandwidth are implemented.  
+<br>
+To change the allocated bandwidth, just alter the parameters in the limit_bw script, any changes will be applied next time the cron job executed.  You can reach the <code>limit_bw</code> script for editing either my exec-ing into the container or my simply editing it in the mounted volume directly from the docker host.  There are only two parameters to edit:
+<li>ratelimit=1mbit</li>
+<li>burstlimit=1mbit</li>
+<br>
+See the 'tc' man page for which suffixes you can use if you want to limit to kbps or Mbps etc.
+
+<br>
+It's not all that pretty, but it works and i think its a simple and elegant solution.  Here is the cron job line i have in my crontab:<br>
 
 <code>* * * * * sudo /var/lib/docker/volumes/apt-mirror/_data/limit_bw</code>
 
