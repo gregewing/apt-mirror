@@ -1,0 +1,19 @@
+#Kali Local Repo#
+#deb http://192.168.1.10:9090/kali      kali-rolling      main contrib non-free
+
+#Kali Standard Repo#
+#deb http://http.kali.org/kali           kali-rolling      main non-free contrib
+
+
+#Ubuntu Local Repo#
+deb http://192.168.1.10:9090/ubuntu     focal            main restricted universe multiverse
+deb http://192.168.1.10:9090/ubuntu     focal-updates    main restricted universe multiverse
+deb http://192.168.1.10:9090/ubuntu     focal-backports  main restricted universe multiverse
+deb http://192.168.1.10:9090/ubuntu     focal-security   main restricted universe multiverse
+
+#Ubuntu Standard Repo#
+#deb http://archive.ubuntu.com/ubuntu/   focal            main restricted universe multiverse
+#deb http://archive.ubuntu.com/ubuntu/   focal-updates    main restricted universe multiverse
+#deb http://archive.ubuntu.com/ubuntu/   focal-backports  main restricted universe multiverse
+#deb http://security.ubuntu.com/ubuntu/  focal-security   main restricted universe multiverse
+
