@@ -46,18 +46,19 @@ gregewing/apt-mirror<br>
 
 <b>Configuring:</b><br>
 
-In its current configuration, the list of repos that get mirrored is held in the default location for apt-mirror.  
-When i get a little time, I'll link this to a configuration file in the volume we created above, so that there is persistence, 
-and also a way to easily re-configure the mirrored repositories even if the container is not running.  So for now, please 
-modify <code>/etc/apt/mirror.list</code> to suit your individual needs.  The file that comes with the container has several examples, 
-all of which are enabled by default, so before you download a half a terrabyte of data you don't need, make sure you update this file.
+In its current configuration, the list of repos that get mirrored is held in the default location for apt-mirror.  When i get a little time, I'll link this to a configuration file in the volume we created above, so that there is persistence, and also a way to easily re-configure the mirrored repositories even if the container is not running.  So for now, please modify <code>/etc/apt/mirror.list</code> to suit your individual needs.  The file that comes with the container has several examples, all of which are enabled by default, so before you download a half a terrabyte of data you don't need, make sure you update this file.
 
-Restart the container after making changes to <code>/etc/apt/mirror.list<\code>
+Restart the container after making changes to <code>/etc/apt/mirror.list</code>
 
 <b>Managing Bandwidth:</b><br>
 
-I have to go out now, but in simple terms, this is creating a cron job on the host to run every minute and run one of the scripts that is
-placed in the volume we created earlier when we first run the container.  I'll explain a bit more about how the bandwidth utilisation is 
-managed next time I update this page.
+To apply meaningful bandwidth controls I have created a few scripts.  The anatomy is as follows:<br>
+<li>get_adapter.id  -  this runs right at the beginning of the entrypoint.sh scipt and it writes the network adapter ID that is seen inside the running container to this file : <code>/var/spool/apt-mirror/adapter.id</code></li>
+<li>limit_bw  -  this sits inside the container, just so that it does not have to be created manually outside the container, but it does not get run by the container itself.  When teh docker image is created, the Dockerfile places this script file in the volume that is mounted from the docker host.</li>
+<b>
+The magic happens when you add a cron job on the docker host to run limit_bw at regular intervals.  I set it up as below to run every 60 seconds, therefor if I need to change the badwidth allowance I only haveto wait a maximum of 60 seconds before the change is altomatically applied after I edit the parameters in the limit_bw script file, either my exec-ing into the container or my simply editing it from the docker host directly.  Not all that pretty, but it works and i think its a simple and elegant solution.  Here is the cron job line i have in my crontab:<br>
 
-This istest, does this text come up ?
+<code>* * * * * sudo /var/lib/docker/volumes/apt-mirror/_data/limit_bw</code>
+
+<br>
+Enjoy.
