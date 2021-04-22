@@ -32,7 +32,7 @@ docker volume create apt-mirror-config
 
 Once this volume exists, we can use it when we create the container:
 
-:/var/spool/apt-mirror
+/var/spool/apt-mirror
 
 <code>
 docker run -d -it \<br>
@@ -46,13 +46,18 @@ gregewing/apt-mirror<br>
 
 <b>Configuring:</b><br>
 
-In its current configuration, the list of repos that get mirrored is held in the default location for apt-mirror.  when i get a little time, I'll link this to a configuration file in the volume we created above, so that there is persistence, and also a way to easily re-configure the mirrored repositories even if the container is not running.  So for now, please modify <code> /etc/apt/mirror.list</code> to suit your individual needs.  The file that comes with the container has several examples, all of which are enabled by default, so before you download a half a terrabyte of data you don't need, make sure you update this file
+In its current configuration, the list of repos that get mirrored is held in the default location for apt-mirror.  
+When i get a little time, I'll link this to a configuration file in the volume we created above, so that there is persistence, 
+and also a way to easily re-configure the mirrored repositories even if the container is not running.  So for now, please 
+modify <code>/etc/apt/mirror.list</code> to suit your individual needs.  The file that comes with the container has several examples, 
+all of which are enabled by default, so before you download a half a terrabyte of data you don't need, make sure you update this file.
 
-Restart the container after making changes to <code>/etc/apt/mirror.list<code>
+Restart the container after making changes to <code>/etc/apt/mirror.list<\code>
 
 <b>Managing Bandwidth:</b><br>
 
-I have to go out now, but in simple terms, this is creating a cron job on the host to run every minute and run one of the scripts that is placed in the volume we created earlier when we first run the container.  I'll explain a bit more about how the bandwidth utilisation is managed next time I update this page.
+I have to go out now, but in simple terms, this is creating a cron job on the host to run every minute and run one of the scripts that is
+placed in the volume we created earlier when we first run the container.  I'll explain a bit more about how the bandwidth utilisation is 
+managed next time I update this page.
 
-
-
+This istest, does this text come up ?
