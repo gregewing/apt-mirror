@@ -59,7 +59,8 @@ To change the allocated bandwidth, just alter the parameters in the <code>limit_
 <li>burstlimit=1mbit</li>
 <br>
 See the 'tc' man page for which suffixes you can use if you want to limit to kbps or Mbps etc.  https://man7.org/linux/man-pages/man8/tc.8.html
-Heres an extract of the tc man page to save you the bother of finding it :
+<br>
+Heres an extract of the relevant part of the 'tc' man page to save you the bother of finding it :
 <br>
 <code>
 RATES  Bandwidths or rates.  These parameters accept a floating
@@ -100,7 +101,7 @@ RATES  Bandwidths or rates.  These parameters accept a floating
               internally, so we can specify a max rate of 4294967295
               bps.
 </code>
-<br><br>
+<br>
 It's not all that pretty, but it works and i think its a simple and elegant solution.  Here is the cron job line i have in my crontab:<br>
 
 <code>* * * * * sudo /var/lib/docker/volumes/apt-mirror/_data/limit_bw</code>
