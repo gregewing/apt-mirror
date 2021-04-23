@@ -100,7 +100,7 @@ RATES  Bandwidths or rates.  These parameters accept a floating
               internally, so we can specify a max rate of 4294967295
               bps.
 </code>
-<br>
+<br><br>
 It's not all that pretty, but it works and i think its a simple and elegant solution.  Here is the cron job line i have in my crontab:<br>
 
 <code>* * * * * sudo /var/lib/docker/volumes/apt-mirror/_data/limit_bw</code>
