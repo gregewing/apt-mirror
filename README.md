@@ -2,7 +2,7 @@
 
 <b>Reason for Being</b><br>
 <br>I created this image because I was frustrated with the apt-mirror images I found in docker hub,  they were all based on old baseimages.  
-So I created a new one and have set it to build automatically whenever there is a new <code>ubuntu:latest</code> basemiage published, so it should always ne up to date.
+So I created a new one and have set it to build automatically whenever there is a new <code>ubuntu:latest</code> basemiage published, so it should always be up to date.
 
 <b>High Level Information</b><br>
 <br>This is built using ubuntu:latest, at the time of writing this is the Focal Fosa build (20.04).  There have been rumours of problems with <code>apt-mirror</code> running on Ubuntu 20.04, but i've not had any issues with it during my testing.  
