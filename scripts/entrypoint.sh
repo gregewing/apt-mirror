@@ -8,6 +8,9 @@
 echo "Starting webserver"
 nginx -g 'daemon off;' &
 
+# Copy latest mirror.list to use
+cp /var/spool/apt-mirror/mirror.list /etc/apt/mirror.list
+
 # Run once to perform initial sync
 if [ -z "$SKIP_INITIAL_SYNC" ]; then
     echo "Performing intial sync"
