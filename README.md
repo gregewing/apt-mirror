@@ -42,7 +42,7 @@ gregewing/apt-mirror<br>
 
 <br><b>Configuring:</b><br>
 
-The list of repos that get mirrored is held in <code>/etc/apt/mirror.list</code>. This shoud provide perisitence across recreations of the container, but does not easily allow altering the list of mirrored repos without having the container running (which is a handy feature I'll add when i have time) 
+The list of repos that get mirrored is held in <code>/etc/apt/mirror.list</code>. This should provide perisitence across re-creations of the container, and it does easily allow altering the list of mirrored repos without having the container running, simply by editin the config file in the volume directly on teh host, even while the container is stopped.
 
 Restart the container after making changes to <code>/etc/apt/mirror.list</code>
 
